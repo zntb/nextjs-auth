@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import { getUser } from '../auth/03-dal';
+import { DeleteButton } from './deleteButton';
 
 export default async function Page() {
   const orders = [
@@ -33,7 +34,7 @@ export default async function Page() {
 
   const user = await getUser();
 
-  if (!user) return null;
+  if (!user) return;
 
   return (
     <>
@@ -83,6 +84,8 @@ export default async function Page() {
         <p>Email: {user.email}</p>
         <p>Name: {user.name}</p>
       </div>
+
+      <DeleteButton />
     </>
   );
 }

@@ -3,7 +3,6 @@ import 'server-only';
 import type { SessionPayload } from '@/app/auth/definitions';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 const secretKey = process.env.SECRET;
 const key = new TextEncoder().encode(secretKey);
@@ -31,10 +30,7 @@ export async function decrypt(session: string | undefined = '') {
   }
 }
 
-export async function createSession(userId: string) {
-  const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-  const session = await encrypt({ userId, expiresAt });
-
+export function createLocalSession(session: string, expiresAt: Date) {
   cookies().set('session', session, {
     httpOnly: true,
     secure: true,
@@ -42,8 +38,10 @@ export async function createSession(userId: string) {
     sameSite: 'lax',
     path: '/',
   });
+}
 
-  redirect('/dashboard');
+export function deleteLocalSession() {
+  cookies().delete('session');
 }
 
 export async function verifySession() {
@@ -51,7 +49,7 @@ export async function verifySession() {
   const session = await decrypt(cookie);
 
   if (!session?.userId) {
-    redirect('/login');
+    return null;
   }
 
   return { isAuth: true, userId: Number(session.userId) };
@@ -75,7 +73,4 @@ export async function updateSession() {
   });
 }
 
-export function deleteSession() {
-  cookies().delete('session');
-  redirect('/login');
-}
+// deleteSession is now handled in 02-database-session.ts

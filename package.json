@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "drizzle-kit migrate",
     "dev": "next dev",
     "lint": "next lint",
     "prettier": "prettier --write --ignore-unknown .",
-    "db:generate": "drizzle-kit generate:pg",
     "push": "drizzle-kit push:pg",
     "seed": "npx tsx be/seed.ts",
     "start": "next start"
@@ -21,6 +22,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@vercel/postgres": "^0.7.2",
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
