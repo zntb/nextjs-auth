@@ -30,7 +30,7 @@
     "drizzle-orm": "^0.33.0",
     "jose": "^5.7.0",
     "jsonwebtoken": "^9.0.2",
-    "lucide-react": "^0.428.0",
+    "lucide-react": "^0.429.0",
     "mkcert": "^3.2.0",
     "next": "14.2.5",
     "pg": "^8.12.0",
