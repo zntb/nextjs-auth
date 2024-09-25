@@ -14,7 +14,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.9.4",
+    "@neondatabase/serverless": "^0.9.5",
     "@next/env": "^14.2.7",
     "@nivo/bar": "^0.87.0",
     "@radix-ui/react-checkbox": "^1.0.4",
